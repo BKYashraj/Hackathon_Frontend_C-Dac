@@ -32,7 +32,7 @@ function login() {
         localStorage.setItem('lastName', response['data']['lastName'])
 
         // navigate to the PropertyListing page
-        navigate('./NomalPages/Homepage.jsx')
+        navigate("/")
       } else {
         toast.error(response['error'])
       }
