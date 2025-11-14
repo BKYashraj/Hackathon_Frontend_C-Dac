@@ -2,23 +2,27 @@ import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 
 import { useNavigate, Link } from 'react-router-dom'
+import { login1 } from '../service/Loing'
 
 function login() {
 
-    const [email, setEmail] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   // get navigate function reference
   const navigate = useNavigate()
 
   // click event handler of Login button
-  const onLogin = async () => {
+    const onLogin = async () => {
+      event.preventDefault();
     if (email.length == 0) {
       toast.warning('please enter email')
     } else if (password.length == 0) {
       toast.warning('please enter password')
     } else {
-      const response = await login(email, password)
+        console.log("comes here")
+        const response = await login1(email, password)
+        console.log(response)
       if (response['status'] == 'success') {
         toast.success('login successful')
 
@@ -28,7 +32,7 @@ function login() {
         localStorage.setItem('lastName', response['data']['lastName'])
 
         // navigate to the PropertyListing page
-        navigate('properties')
+        navigate('./NomalPages/Homepage.jsx')
       } else {
         toast.error(response['error'])
       }
